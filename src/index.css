@@ -1,0 +1,11 @@
+*:not(h1) {
+  font-family: 'JetBrains Mono';
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  overflow-y: hidden;
+  padding: 2rem;
+}
