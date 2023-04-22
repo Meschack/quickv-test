@@ -1,11 +1,74 @@
-*:not(h1) {
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+* {
   font-family: 'JetBrains Mono';
-  font-size: 1em;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:not(h1) {
+  font-size: 1em;
+}
+
+h1 {
+  margin-bottom: 1rem;
 }
 
 body {
   height: 100vh;
   overflow-y: hidden;
   padding: 2rem;
+}
+
+.header {
+  max-height: 50vh;
+}
+
+.container {
+  overflow-y: auto;
+  height: 50vh;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.container::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #828282;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: #dddddd;
+}
+
+.app {
+  padding: 0 1rem;
+  width: 50%;
+  min-width: 360px;
+  margin: 0 auto;
+}
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  border-radius: 5px;
+  background-color: #198754;
+  color: white !important;
+  margin-bottom: 1rem;
+}
+
+.alert a {
+  color: white !important;
+  text-decoration: none;
+}
+
+.alert a:hover {
+  border-bottom: 1px solid;
 }

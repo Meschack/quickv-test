@@ -1,25 +1,48 @@
 import { useState } from 'react'
-import '../assets/styles/Form.css'
+import { QuickvForm } from './QuickvForm'
+import { QuickvInput } from './QuickvInput'
 
-export const Form = () => {
-  const [infos, setInfos] = useState(null)
+const frenchKeys = {
+  name: 'Nom',
+  age: 'Âge',
+  url: 'Lien du site',
+  lang: "Langue d'affichage",
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+const englishKeys = {
+  name: 'Name',
+  age: 'Age',
+  url: 'Link to the website',
+  lang: 'Display language',
+}
 
-    const form = new FormData(e.target)
+export const Form = ({ infos, setInfos }) => {
+  const [keysObject, setKeysObject] = useState(englishKeys)
+
+  const handleSubmit = (event) => {
+    const form = new FormData(event.target)
 
     const name = form.get('name')
     const age = form.get('age')
     const websiteUrl = form.get('url')
     const lang = form.get('lang')
 
+    setKeysObject(lang == 'English' ? frenchKeys : englishKeys)
+
     const userInformations = (
       <>
-        <p>Nom : {name}</p>
-        <p>Age : {age}</p>
-        <p>Lien du site : {websiteUrl}</p>
-        <p>Langue choisie : {lang}</p>
+        <p>
+          {keysObject.name} : {name}
+        </p>
+        <p>
+          {keysObject.age} : {age}
+        </p>
+        <p>
+          {keysObject.url} : <a href={websiteUrl}>{websiteUrl}</a>
+        </p>
+        <p>
+          {keysObject.lang} : {lang}
+        </p>
       </>
     )
 
@@ -28,75 +51,53 @@ export const Form = () => {
 
   return (
     <div>
-      {infos ? <div className='alert'>{infos}</div> : null}
-      <form action='' onSubmit={handleSubmit}>
-        <div className='form-group'>
-          <label htmlFor='name' className='form-label'>
-            Enter your name
-          </label>
-          <input
-            type='text'
-            id='name'
-            name='name'
-            placeholder='At least 2 characters, at most 20'
-            data-qv-rules='required|minlength:3|maxlength:20'
-            data-qv-messages='The name is required | The name should be at least 3 characters | The field size should not exceed 20 characters'
-            data-qv-invalid-class='invalid-class'
-            data-qv-valid-class='valid-class'
-          />
-          <div data-qv-feedback='name' className='feedback'></div>
-        </div>
+      <QuickvForm submitButtonText='Soumettre' onSubmit={handleSubmit}>
+        <QuickvInput
+          name='name'
+          fieldPlaceholder='At least 2 characters, at most 20'
+          qvRules='required|minlength:3|maxlength:20'
+          qvMessages='The name is required | The name should be at least 3 characters | The field size should not exceed 20 characters'
+          qvInvalidClass='invalid-class'
+          qvValidClass='valid-class'
+          labelContent='Enter your name'
+          feedbackClass='feedback'
+        />
 
-        <div className='form-group'>
-          <label htmlFor='age'>Enter your age</label>
-          <input
-            type='text'
-            name='age'
-            id='age'
-            data-qv-rules='required|integer|between:18,28'
-            data-qv-messages='The age is required | The age should be a number | The age should be between 18 and 28'
-            placeholder='Enter your age (between 18 and 28)'
-            data-qv-invalid-class='invalid-class'
-            data-qv-valid-class='valid-class'
-          />
+        <QuickvInput
+          name='age'
+          qvRules='required|integer|between:18,28'
+          qvMessages='The age is required | The age should be a number | The age should be between 18 and 28'
+          fieldPlaceholder='Enter your age (between 18 and 28)'
+          qvInvalidClass='invalid-class'
+          qvValidClass='valid-class'
+          feedbackClass='feedback'
+          labelContent='Enter your age'
+        />
 
-          <div data-qv-feedback='age' className='feedback'></div>
-        </div>
+        <QuickvInput
+          labelContent='Enter your website URL'
+          qvRules='required|url'
+          qvMessages='The URL is required | Your URL is not valid'
+          qvInvalidClass='invalid-class'
+          qvValidClass='valid-class'
+          name='url'
+          feedbackClass='feedback'
+          fieldPlaceholder='Ex : (https://example.com)'
+        />
 
-        <div className='form-group'>
-          <label htmlFor='url'>Enter your website URL</label>
-          <input
-            type='text'
-            id='url'
-            name='url'
-            data-qv-rules='required|url'
-            data-qv-messages='The URL is required | Your URL is not valid'
-            data-qv-invalid-class='invalid-class'
-            data-qv-valid-class='valid-class'
-            placeholder='Ex : (https://example.com)'
-          />
-          <div data-qv-feedback='url' className='feedback'></div>
-        </div>
-
-        <div className='form-group'>
-          <label htmlFor='lang'>Choose language</label>
-          <input
-            type='text'
-            id='lang'
-            name='lang'
-            data-qv-rules='required|in:Français,Anglais'
-            data-qv-messages='The lan field is required | This language is not authorized'
-            data-qv-invalid-class='invalid-class'
-            data-qv-valid-class='valid-class'
-            placeholder='Français | Anglais'
-          />
-          <div data-qv-feedback='lang' className='feedback'></div>
-        </div>
-
-        <button data-qv-submit className='btn'>
-          Submit
-        </button>
-      </form>
+        <QuickvInput
+          type='text'
+          id='lang'
+          name='lang'
+          qvRules='required|in:French,English'
+          qvMessages='The language field is required | This language is not authorized'
+          qvInvalidClass='invalid-class'
+          qvValidClass='valid-class'
+          fieldPlaceholder='French | English'
+          labelContent='Choose your language'
+          feedbackClass='feedback'
+        />
+      </QuickvForm>
     </div>
   )
 }

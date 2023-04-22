@@ -1,17 +1,19 @@
-import { useEffect } from 'react'
+import { useState } from 'react'
+
 import { Form } from './components/Form'
-import '/src/libs/Quickv/quickv.js'
 
 export const App = () => {
-  useEffect(() => {
-    const qv = new Qv('form')
-    qv.init()
-  }, [])
+  const [infos, setInfos] = useState(null)
 
   return (
-    <div className='container'>
-      <h1 className='h1 mb-3'>Quickv test with React Components</h1>
-      <Form />
+    <div className='app'>
+      <div className='header'>
+        <h1 className='h1 mb-3'>Quickv React Components</h1>
+        {infos ? <div className='alert'>{infos}</div> : null}
+      </div>
+      <div className='container'>
+        <Form infos={infos} setInfos={setInfos} />
+      </div>
     </div>
   )
 }
