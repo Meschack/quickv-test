@@ -1,5 +1,7 @@
-import React from 'react'
+import '/libs/Quickv/quickv'
+
 import { QuickvSubmitButton } from './QuickvSubmitButton'
+import { useEffect } from 'react'
 
 /**
  * QuickvForm is a reusable React component for creating forms with QuickvInput components.
@@ -18,6 +20,11 @@ export const QuickvForm = ({
   onSubmit,
   children,
 }) => {
+  useEffect(() => {
+    const qv = new Qv()
+    qv.init()
+  }, [])
+
   const handleSubmit = (event) => {
     event.preventDefault()
     if (onSubmit) {

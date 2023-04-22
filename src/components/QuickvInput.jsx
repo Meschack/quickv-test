@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import '/libs/Quickv/quickv'
 import '../assets/styles/QuickvInput.css'
 
 /**
@@ -27,13 +25,6 @@ export const QuickvInput = ({
   feedbackClass,
   fieldPlaceholder,
 }) => {
-  const inputSelector = `input[name='${name}']`
-
-  useEffect(() => {
-    const qv = new QvInput(inputSelector)
-    qv.init()
-  }, [])
-
   return (
     <div className='form-group'>
       <label htmlFor={name}>{labelContent}</label>
