@@ -4,7 +4,7 @@ import '/src/libs/Quickv/quickv.js'
 
 export const App = () => {
   useEffect(() => {
-    const qv = new Qv('form')
+    const qv = new Quickv('form')
     qv.init()
   }, [])
 

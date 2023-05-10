@@ -31,7 +31,7 @@
 
     - Enfin, le quatrième attribut `data-qv-feedback` spécifie l'élément DOM qui affichera le message d'erreur lorsque la validation échoue.
 
-3.  Une fois que vous avez ajouté les attributs de données appropriés à chaque champ de formulaire, vous pouvez créer une instance de la classe `Qv` et l'initialiser. Dans notre exemple, nous avons créé une instance de la classe Qv dans notre composant principal avec un tableau de dépendances vide et l'avons initialisée comme suit :
+3.  Une fois que vous avez ajouté les attributs de données appropriés à chaque champ de formulaire, vous pouvez créer une instance de la classe `Quickv` et l'initialiser. Dans notre exemple, nous avons créé une instance de la classe Quickv dans notre composant principal avec un tableau de dépendances vide et l'avons initialisée comme suit :
 
     ```js
     import { useEffect } from 'react'
@@ -40,7 +40,7 @@
 
     export const App = () => {
       useEffect(() => {
-        const qv = new Qv('form')
+        const qv = new Quickv('form')
         qv.init()
       }, [])
 
@@ -55,7 +55,7 @@
 
     Dans le composant `App`, on utilise le hook `useEffect` pour instancier la bibliothèque Quickv au montage du composant. Ensuite, on rend le composant `Form` qui rend un formulaire utilisant les [éléments de validation](https://github.com/quick-v/quickv#some-validation-rules-you-can-test) fournis par la bibliothèque Quickv.
 
-    Le hook `useEffect` est un hook intégré de React qui permet d'exécuter un effet de bord (par exemple, une requête réseau, une animation ou l'instanciation d'une bibliothèque) lorsque le composant est monté ou mis à jour. Dans ce cas, on utilise `useEffect` pour instancier la bibliothèque Quickv au montage du composant en créant une nouvelle instance de `Qv` avec le paramètre `form` pour identifier l'élément HTML du formulaire à valider.
+    Le hook `useEffect` est un hook intégré de React qui permet d'exécuter un effet de bord (par exemple, une requête réseau, une animation ou l'instanciation d'une bibliothèque) lorsque le composant est monté ou mis à jour. Dans ce cas, on utilise `useEffect` pour instancier la bibliothèque Quickv au montage du composant en créant une nouvelle instance de `Quickv` avec le paramètre `form` pour identifier l'élément HTML du formulaire à valider.
 
 > Notez qu'il existe d'autres façons d'instancier la bibliothèque qui sont détaillées dans la [documentation officelle de Quickv](https://github.com/quick-v/quickv#usage)
 
